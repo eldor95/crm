@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const MongoURI = 'mongodb://localhost:27017/crm';
 const MongoDBSession = require("connect-mongodb-session")(session);
 
+
 app.use(express.json())
 app.use(express.urlencoded({
     extended: false
@@ -47,7 +48,19 @@ app.use(
 );
 
 
-
+app.use('/user', require('./router/user'))
+app.use('/fan', require('./router/fan'))
+app.use('/learning_center', require('./router/learning_center'))
+app.use('/mentor', require('./router/user'))
+app.use('/user', require('./router/user'))
+app.use('/user', require('./router/user'))
+app.use('/user', require('./router/user'))
+app.use('/user', require('./router/user'))
+app.use('/user', require('./router/user'))
+app.use('/user', require('./router/user'))
+app.use('/user', require('./router/user'))
+app.use('/user', require('./router/user'))
+app.use('/user', require('./router/user'))
 
 app.listen(4000, () => {
     console.log("server start")
