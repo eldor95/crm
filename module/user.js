@@ -26,10 +26,10 @@ const User = mongoose.Schema({
         enum: [false, true],
         default: true
     },
-    image: {
-        type: String,
-        required: true
-    },
+    // image: {
+    //     type: String,
+    //     required: true
+    // },
     role: {
         type: String,
         enum: ['admin', 'mentor', 'diler', 'student']

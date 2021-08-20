@@ -3,18 +3,8 @@ const mongoose = require('mongoose')
 
 const Tuman = mongoose.Schema({
     name: {
-        uz: {
-            type: String,
-            required: true
-        },
-        ru: {
-            type: String,
-            required: true
-        },
-        en: {
-            type: String,
-            required: true
-        }
+        type: String,
+        require: true
     },
     viloyat_ID: {
         type: mongoose.Schema.ObjectId,
