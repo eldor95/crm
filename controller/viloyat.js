@@ -2,8 +2,14 @@ const VILOYAT = require('../module/viloyat')
 
 exports.createOne = async(req, res, next) => {
     const result = new VILOYAT({
-        name: req.body.name,
-    });
+        name: {
+            uz: req.body.nameuz,
+            ru: req.body.nameru,
+            en: req.body.nameen,
+        }
+    })
+
+
     result.save().then(() => {
         res.json(result)
     }).catch((error) => {
@@ -16,7 +22,9 @@ exports.getAll = async(req, res, next) => {
 };
 exports.updateOne = async(req, res, next) => {
     const result = await VILOYAT.findByIdAndUpdate(req.param.id);
-    result.name = req.body.name;
+    result.name.uz = req.body.nameuz;
+    result.name.ru = req.body.nameru;
+    result.name.en = req.body.nameen;
     result.save().then(() => {
         res.json(result)
     }).catch((err) => {

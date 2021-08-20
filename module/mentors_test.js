@@ -38,3 +38,4 @@ const Mentors_test = mongoose.Schema.ObjectId({
 }, {
     timestamps: true
 })
+module.exports = mongoose.model('MENTORS_TEST', Mentors_test)
