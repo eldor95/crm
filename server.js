@@ -48,6 +48,10 @@ app.use(
 );
 
 
+app.use('/chat_answer', require('./router/chat/chat_answer'))
+app.use('/chat_question', require('./router/chat/chat_question'))
+app.use('/chat', require('./router/chat/chat'))
+
 app.use('/user', require('./router/user'))
 app.use('/fan', require('./router/fan'))
 app.use('/learning_center', require('./router/learning_center'))
