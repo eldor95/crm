@@ -6,17 +6,16 @@ const Schema = mongoose.Schema({
         ref: "MENTOR",
         required: true
     },
-    mentors_group_ID: {
-        type: mongoose.Schema.ObjectId,
-        ref: "MENTORS_GROUP",
+    name: {
+        type: String,
         required: true
     },
-    mentors_form_ID: {
+    group_ID: {
         type: mongoose.Schema.ObjectId,
-        ref: "MENTORS_FORM",
+        ref: "MENTORS_GROUP",
         required: true
     }
 }, {
     timestamps: true
 })
-module.exports = mongoose.model('MENTORS_THEME', Schema)
+module.exports = mongoose.model('CHAT', Schema)

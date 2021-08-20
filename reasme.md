@@ -15,6 +15,13 @@ role: [
 ]
 
 ```
+## Student`s group
+```
+mentor_ID
+group_ID
+student_ID
+
+```
 
 ## Viloyat
 

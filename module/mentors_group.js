@@ -3,7 +3,7 @@
 // mentor_ID(Mentor model)
 // name
 const mongoose = require('mongoose')
-const Mentors_group = mongoose.Schema({
+const Schema = mongoose.Schema({
     name: {
         type: String,
         require: true
@@ -26,4 +26,4 @@ const Mentors_group = mongoose.Schema({
 }, {
     timestamps: true
 })
-module.exports = mongoose.model('MENTORS_GROUP', Mentors_group)
+module.exports = mongoose.model('MENTORS_GROUP', Schema)

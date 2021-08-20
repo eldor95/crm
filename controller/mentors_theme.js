@@ -1,6 +1,6 @@
-const MENTOR = require('../module/mentor')
-const MENTORS_GROUP = require('../module/mentors_group')
-const MENTORS_FORM = require('../module/mentors_form')
+// const MENTOR = require('../module/mentor')
+// const MENTORS_GROUP = require('../module/mentors_group')
+// const MENTORS_FORM = require('../module/mentors_form')
 const MENTORS_THEME = require('../module/mentors_theme')
 
 
