@@ -19,6 +19,7 @@ const Tuman = mongoose.Schema({
     viloyat_ID: {
         type: mongoose.Schema.ObjectId,
         ref: "VILOYAT",
+        index: true,
         required: true
     }
 }, {
