@@ -7,16 +7,19 @@ const Mentor = mongoose.Schema({
     mentor_ID: {
         type: mongoose.Schema.ObjectId,
         ref: "USER",
+        index: true,
         require: true
     },
     lc_ID: {
         type: mongoose.Schema.ObjectId,
         ref: "LEARNING_CENTER",
+        index: true,
         required: true
     },
     fan_ID: {
         type: mongoose.Schema.ObjectId,
         ref: "FAN",
+        index: true,
         required: true
     }
 

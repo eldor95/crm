@@ -11,16 +11,19 @@ const Learning_center = mongoose.Schema({
     viloyat_ID: {
         type: mongoose.Schema.ObjectId,
         ref: "VILOYAT",
+        index: true,
         required: true
     },
     tuman_ID: {
         type: mongoose.Schema.ObjectId,
         ref: "TUMAN",
+        index: true,
         required: true
     },
     diler_ID: {
         type: mongoose.Schema.ObjectId,
         ref: "USER",
+        index: true,
         required: true
     }
 }, {

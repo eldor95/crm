@@ -10,11 +10,13 @@ const Fan = mongoose.Schema({
     diler_ID: {
         type: mongoose.Schema.ObjectId,
         ref: "USER",
+        index: true,
         required: true
     },
     lc_ID: {
         type: mongoose.Schema.ObjectId,
         ref: "LEARNING_CENTER",
+        index: true,
         required: true
     }
 }, {

@@ -1,9 +1,9 @@
-const CHAT_QUESTION = require('../../module/chat/chat_question')
+const CHAT_ANSWER = require('../../module/chat/chat_answer')
 
 exports.create = async(req, res, next) => {
-    const result = new CHAT_QUESTION({
-        question: req.body.name,
-        chat_ID: req.body.chat_ID,
+    const result = new CHAT_ANSWER({
+        chat_question_ID: req.body.chat_question_ID,
+        answer: req.body.answer,
         file: req.file.filename,
         user_ID: req.body.user_ID,
     })
@@ -16,7 +16,7 @@ exports.create = async(req, res, next) => {
 
 
 exports.getAll = async(req, res, next) => {
-    const result = await CHAT_QUESTION.find().sort({
+    const result = await CHAT_ANSWER.find().sort({
             date: -1
         })
         .populate(['mentor_ID', 'group_ID']);
@@ -24,9 +24,9 @@ exports.getAll = async(req, res, next) => {
 };
 exports.update = async(req, res, next) => {
 
-    const result = await CHAT_QUESTION.findByIdAndUpdate(req.param.id);
-    result.question = req.body.question;
-    result.chat_ID = req.body.chat_ID;
+    const result = await CHAT_ANSWER.findByIdAndUpdate(req.param.id);
+    result.answer = req.body.answer;
+    result.chat_question_ID = req.body.chat_question_ID;
     result.file = req.file.filename;
     result.user_ID = req.body.user_ID;
 
@@ -37,7 +37,7 @@ exports.update = async(req, res, next) => {
     })
 };
 exports.deleteOne = async(req, res, next) => {
-    await CHAT_QUESTION.findByIdAndDelete(req.params.id)
+    await CHAT_ANSWER.findByIdAndDelete(req.params.id)
     res.status(200).json({
         success: true,
         data: []

@@ -1,25 +1,30 @@
-const mongoose = require('mongoose')
+// mentor_ID(User model)
+// lc_ID(Learning_center model)
+// fan_ID(Fan model)
 
-const Schema = mongoose.Schema({
+const mongoose = require('mongoose')
+const Students_group = mongoose.Schema({
     mentor_ID: {
         type: mongoose.Schema.ObjectId,
         ref: "MENTOR",
         index: true,
-        required: true
+        require: true
     },
-    mentors_group_ID: {
+    group_ID: {
         type: mongoose.Schema.ObjectId,
         ref: "MENTORS_GROUP",
         index: true,
         required: true
     },
-    mentors_form_ID: {
+    student_ID: {
         type: mongoose.Schema.ObjectId,
-        ref: "MENTORS_FORM",
+        ref: "USER",
         index: true,
         required: true
     }
+
 }, {
     timestamps: true
 })
-module.exports = mongoose.model('MENTORS_THEME', Schema)
+
+module.exports = mongoose.model('STUDENTS_GROUP', Students_group)

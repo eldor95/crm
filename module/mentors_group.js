@@ -11,16 +11,19 @@ const Schema = mongoose.Schema({
     lc_ID: {
         type: mongoose.Schema.ObjectId,
         ref: "LEARNING_CENTER",
+        index: true,
         required: true
     },
     fan_ID: {
         type: mongoose.Schema.ObjectId,
         ref: "FAN",
+        index: true,
         required: true
     },
     mentor_ID: {
         type: mongoose.Schema.ObjectId,
         ref: "MENTOR",
+        index: true,
         required: true
     }
 }, {

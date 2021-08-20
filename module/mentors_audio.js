@@ -23,21 +23,25 @@ const Mentors_audio = mongoose.Schema({
     mentor_ID: {
         type: mongoose.Schema.ObjectId,
         ref: "MENTOR",
+        index: true,
         required: true
     },
     mentors_group_ID: {
         type: mongoose.Schema.ObjectId,
         ref: "MENTORS_GROUP",
+        index: true,
         required: true
     },
     mentors_form_ID: {
         type: mongoose.Schema.ObjectId,
         ref: "MENTORS_FORM",
+        index: true,
         required: true
     },
     mentors_theme_ID: {
         type: mongoose.Schema.ObjectId,
         ref: "MENTORS_THEME",
+        index: true,
         required: true
     }
 }, {
