@@ -5,9 +5,9 @@ const STUDENTS_GROUP = require('../module/students_group')
 
 exports.createOne = async(req, res, next) => {
     const result = new STUDENTS_GROUP({
-        name: req.body.name,
+        student_ID: req.body.student_ID,
         mentor_ID: req.body.mentor_ID,
-        mentors_group_ID: req.body.mentors_group_ID,
+        group_ID: req.body.group_ID,
 
     });
     result.save().then(() => {
@@ -20,15 +20,15 @@ exports.getAll = async(req, res, next) => {
     const result = await STUDENTS_GROUP.find().sort({
             date: -1
         })
-        .populate(['mentors_group_ID', 'mentor_ID']);
+        .populate(['group_ID', 'mentor_ID', 'students_group']);
     res.json(result)
 };
 exports.update = async(req, res, next) => {
 
     const result = await STUDENTS_GROUP.findByIdAndUpdate(req.param.id);
     result.mentor_ID = req.body.mentor_ID;
-    result.mentors_group_ID = req.body.mentors_group_ID;
-    result.name = req.body.name;
+    result.group_ID = req.body.group_ID;
+    result.student_ID = req.body.student_ID;
 
     result.save().then(() => {
         res.json(result)
