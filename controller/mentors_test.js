@@ -1,35 +1,41 @@
-// const MENTOR = require('../module/mentor')
-// const MENTORS_GROUP = require('../module/mentors_group')
-// const MENTORS_FORM = require('../module/mentors_form')
 const MENTORS_TEST = require('../module/mentors_test')
 
-
 exports.createOne = async(req, res, next) => {
-    const result = new MENTORS_THEME({
-        mentors_form_ID: req.body.mentors_form_ID,
-        mentor_ID: req.body.mentor_ID,
-        mentors_group_ID: req.body.mentors_group_ID,
+    const result = new MENTORS_TEST({
+        question: req.body.question,
+        options: {
+            a: req.body.options_a,
+            b: req.body.options_b,
+            c: req.body.options_c,
+            d: req.body.options_d,
+        },
+        answer: req.body.answer,
+
 
     });
-    result.save().then(() => {
-        res.json(result)
-    }).catch((error) => {
-        res.json(error)
-    })
+    result.save()
+        .then(() => {
+            res.json(result)
+        })
+        .catch((error) => {
+            res.json(error)
+        })
 };
 exports.getAll = async(req, res, next) => {
-    const result = await MENTORS_THEME.find().sort({
-            date: -1
-        })
-        .populate(['mentors_group_ID', 'mentor_ID', 'mentors_form_ID']);
+    const result = await MENTORS_TEST.find()
     res.json(result)
 };
 exports.update = async(req, res, next) => {
 
-    const result = await MENTORS_THEME.findByIdAndUpdate(req.param.id);
-    result.mentor_ID = req.body.mentor_ID;
-    result.mentors_group_ID = req.body.mentors_group_ID;
-    result.mentors_form_ID = req.body.mentors_form_ID;
+    const result = await MENTORS_TEST.findByIdAndUpdate(req.param.id);
+    result.question = req.body.question;
+    result.options.a = req.body.options_a;
+    result.options.b = req.body.options_b;
+    result.options.c = req.body.options_c;
+    result.options.d = req.body.options_d;
+    result.answer = req.body.answer;
+    result.score = req.body.score;
+    result.status = req.body.status;
 
     result.save().then(() => {
         res.json(result)
@@ -38,7 +44,7 @@ exports.update = async(req, res, next) => {
     })
 };
 exports.deleteOne = async(req, res, next) => {
-    await MENTORS_THEME.findByIdAndDelete(req.params.id)
+    await MENTORS_TEST.findByIdAndDelete(req.params.id)
     res.status(200).json({
         success: true,
         data: []

@@ -62,6 +62,7 @@ app.use('/mentors_form', require('./router/mentors_form'))
 app.use('/mentors_group', require('./router/mentors_group'))
 app.use('/mentors_theme', require('./router/mentors_theme'))
 app.use('/mentors_video', require('./router/mentors_video'))
+app.use('/mentors_test', require('./router/mentors_test'))
 app.use('/tuman', require('./router/tuman'))
 app.use('/viloyat', require('./router/viloyat'))
 

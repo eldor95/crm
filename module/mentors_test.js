@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
-const Mentors_test = mongoose.Schema.ObjectId({
+
+const Mentors_test = mongoose.Schema({
     question: {
         type: String,
         required: true
@@ -22,7 +23,6 @@ const Mentors_test = mongoose.Schema.ObjectId({
             required: true
         },
     },
-
     answer: {
         type: String,
         required: true
@@ -38,4 +38,5 @@ const Mentors_test = mongoose.Schema.ObjectId({
 }, {
     timestamps: true
 })
+
 module.exports = mongoose.model('MENTORS_TEST', Mentors_test)
