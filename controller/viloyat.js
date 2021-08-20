@@ -2,11 +2,8 @@ const VILOYAT = require('../module/viloyat')
 
 exports.createOne = async(req, res, next) => {
     const result = new VILOYAT({
-        name: {
-            uz: req.body.nameuz,
-            ru: req.body.nameru,
-            en: req.body.nameen,
-        }
+        name: req.body.name,
+
     })
 
 
