@@ -40,7 +40,7 @@ name: {
 name
 viloyat_ID
 
-```     
+```
 
 
 ## Learning_center
@@ -51,9 +51,9 @@ viloyat_ID (Viloyat model)
 tuman_ID (Tuman model)
 diler (User model)
 
-```     
+```
 
-## Fan 
+## Fan
 ```
 name
 diler (User model)
@@ -62,56 +62,55 @@ lc_ID (Learning_center model)
 ```
 
 
-## Mentor 
+## Mentor
 ```
 mentor_ID (User model)
 lc_ID (Learning_center model)
-fan_ID (Fan model) 
+fan_ID (Fan model)
 
 ```
 
 
-## Mentor's group 
+## Mentor's group
 ```
 lc_ID (Learning_center model)
-fan_ID (Fan model) 
+fan_ID (Fan model)
 mentor_ID (Mentor model)
-name 
+name
 
 ```
 
-## Mentor's form (sinf) 
+## Mentor's form (sinf)
 ```
 mentor_ID (Mentor model)
 mentor_group_ID (Mentor's group  model)
-name 
+name
 
 ```
 
 
-## Mentor's theme (mavzu) 
+## Mentor's theme (mavzu)
 ```
 mentor_ID (Mentor model)
-mentor_group_ID (Mentor's group model) 
+mentor_group_ID (Mentor's group model)
 mentor_form_ID (Mentor's form model)
- 
 
 ```
 
-## Mentor's collection (test uchun kolleksiya) 
+## Mentor's collection (test uchun kolleksiya)
 ```
 mentor_ID (Mentor model)
-mentor_group_ID (Mentor's group model) 
+mentor_group_ID (Mentor's group model)
 mentor_form_ID (Mentor's form model)
 mentor_theme_ID (Mentor's theme model)
 collection_name
 ```
 
 
-## Mentor's test (test qoshish) 
+## Mentor's test (test qoshish)
 ```
 
-collection_ID (Mentor's collection model) 
+collection_ID (Mentor's collection model)
 question: {
         type: String,
         required: true
@@ -129,10 +128,10 @@ question: {
 ```
 
 
-## Mentor's audio (audio) 
+## Mentor's audio (audio)
 ```
 mentor_ID (Mentor model)
-mentor_group_ID (Mentor's group model) 
+mentor_group_ID (Mentor's group model)
 mentor_form_ID (Mentor's form model)
 mentor_theme_ID (Mentor's theme model)
 audio_name

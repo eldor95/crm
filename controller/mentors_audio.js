@@ -11,7 +11,7 @@ exports.createOne = async(req, res, next) => {
         mentors_group_ID: req.body.mentors_group_ID,
         mentors_theme_ID: req.body.mentors_theme_ID,
         audio_name: req.body.audio_name,
-        audio_file: req.body.audio_file,
+        audio_file: req.file.filename,
         audio_time: req.body.audio_time,
 
     });
@@ -36,7 +36,7 @@ exports.update = async(req, res, next) => {
     result.mentors_form_ID = req.body.mentors_form_ID;
     result.mentors_theme_ID = req.body.mentors_theme_ID;
     result.audio_name = req.body.audio_name;
-    result.audio_file = req.body.audio_file;
+    result.audio_file = req.file.filename;
     result.audio_time = req.body.audio_time;
 
     result.save().then(() => {

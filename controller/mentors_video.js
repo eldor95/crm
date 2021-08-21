@@ -12,7 +12,7 @@ exports.createOne = async(req, res, next) => {
         mentors_group_ID: req.body.mentors_group_ID,
         mentors_theme_ID: req.body.mentors_theme_ID,
         video_name: req.body.video_name,
-        video_file: req.body.video_file,
+        video_file: req.file.filename,
         video_time: req.body.video_time,
     });
     result.save().then(() => {
@@ -36,7 +36,7 @@ exports.update = async(req, res, next) => {
     result.mentors_form_ID = req.body.mentors_form_ID;
     result.mentors_theme_ID = req.body.mentors_theme_ID;
     result.video_name = req.body.video_name;
-    result.video_file = req.body.video_file;
+    result.video_file = req.file.filename;
     result.video_time = req.body.video_time;
 
     result.save().then(() => {
