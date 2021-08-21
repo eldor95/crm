@@ -2,8 +2,9 @@ const express = require('express')
 const app = express()
 const session = require("express-session");
 const mongoose = require('mongoose')
+const path = require('path')
 const cookieParser = require("cookie-parser");
-// const cors = require('cors')
+const cors = require('cors')
 const MongoURI = 'mongodb://localhost:27017/crm';
 const MongoDBSession = require("connect-mongodb-session")(session);
 
@@ -21,7 +22,6 @@ mongoose.connect(MongoURI, {
 }).then(() => {
     console.log('MongoDb connected! ');
 });
-// app.use(cors());
 
 app.locals.moment = require("moment");
 
@@ -29,9 +29,17 @@ const store = new MongoDBSession({
     uri: MongoURI,
     collection: "MYSession",
 });
+app.use(cors());
+app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "views")));
 
 app.use(cookieParser());
 
+app.use(
+    methodOverride("_method", {
+        methods: ["POST", "GET"],
+    })
+);
 app.use(
     session({
         secret: "odiloveldor",
@@ -65,6 +73,7 @@ app.use('/mentors_video', require('./router/mentors_video'))
 app.use('/mentors_test', require('./router/mentors_test'))
 app.use('/tuman', require('./router/tuman'))
 app.use('/viloyat', require('./router/viloyat'))
+
 
 app.listen(4000, () => {
     console.log("server start")
