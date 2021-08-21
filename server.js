@@ -3,6 +3,8 @@ const app = express()
 const session = require("express-session");
 const mongoose = require('mongoose')
 const path = require('path')
+const expressLayouts = require("express-ejs-layouts");
+const methodOverride = require("method-override");
 const cookieParser = require("cookie-parser");
 const cors = require('cors')
 const MongoURI = 'mongodb://localhost:27017/crm';
@@ -32,14 +34,17 @@ const store = new MongoDBSession({
 app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "views")));
+app.set("view engine", "ejs");
 
 app.use(cookieParser());
 
 app.use(
     methodOverride("_method", {
         methods: ["POST", "GET"],
-    })
-);
+    }));
+
+app.use(expressLayouts);
+
 app.use(
     session({
         secret: "odiloveldor",
