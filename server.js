@@ -79,6 +79,7 @@ app.use('/mentors_test', require('./router/mentors_test'))
 app.use('/tuman', require('./router/tuman'))
 app.use('/viloyat', require('./router/viloyat'))
 
+app.use('/admin', require('./router/admin/admin'))
 
 app.listen(4000, () => {
     console.log("server start")
