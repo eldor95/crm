@@ -13,7 +13,8 @@ exports.createOne = async(req, res, next) => {
         fan_ID: req.body.fan_ID
     });
     result.save().then(() => {
-        res.json(result)
+        // res.json(result)
+        res.redirect('/mentors_group/index')
     }).catch((error) => {
         res.json(error)
     })
@@ -23,7 +24,11 @@ exports.getAll = async(req, res, next) => {
             date: -1
         })
         .populate(['lc_ID', 'fan_ID', 'mentor_ID']);
-    res.json(result)
+    // res.json(result)
+    res.render("./admin/mentors_group/index", {
+        layout: "./admin",
+        result
+    })
 };
 exports.update = async(req, res, next) => {
 
@@ -34,15 +39,17 @@ exports.update = async(req, res, next) => {
     result.name = req.body.name;
 
     result.save().then(() => {
-        res.json(result)
+        // res.json(result)
+        res.redirect('/mentors_group/index')
     }).catch((err) => {
         res.json(err)
     })
 };
 exports.deleteOne = async(req, res, next) => {
     await MENTORS_GROUP.findByIdAndDelete(req.params.id)
-    res.status(200).json({
-        success: true,
-        data: []
-    })
+        // res.status(200).json({
+        //     success: true,
+        //     data: []
+        // })
+    res.redirect('/mentors_group/index')
 };

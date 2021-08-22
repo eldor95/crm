@@ -9,7 +9,8 @@ exports.createOne = async(req, res, next) => {
         diler_ID: req.body.diler_ID
     });
     result.save().then(() => {
-        res.json(result)
+        // res.json(result)
+        res.redirect('/fan/index')
     }).catch((error) => {
         res.json(error)
     })
@@ -19,7 +20,11 @@ exports.getAll = async(req, res, next) => {
             date: -1
         })
         .populate(['lc_ID', 'diler_ID']);
-    res.json(result)
+    // res.json(result)
+    res.render("./admin/fan/index", {
+        layout: "./admin",
+        result
+    })
 };
 exports.update = async(req, res, next) => {
 

@@ -12,14 +12,20 @@ exports.createOne = async(req, res, next) => {
         role: req.body.role,
     });
     result.save().then(() => {
-        res.json(result)
+        // res.json(result)
+        res.redirect('/user/getAll')
+
     }).catch((error) => {
         res.json(error)
     })
 };
 exports.getAll = async(req, res, next) => {
     const result = await USER.find()
-    res.json(result)
+        // res.json(result)
+    res.render("./admin/user/index", {
+        layout: "./admin",
+        result
+    })
 };
 exports.update = async(req, res, next) => {
 
@@ -34,15 +40,17 @@ exports.update = async(req, res, next) => {
     result.role = req.body.rolel;
 
     result.save().then(() => {
-        res.json(result)
+        // res.json(result)
+        res.redirect('/user/getAll')
     }).catch((err) => {
         res.json(err)
     })
 };
 exports.deleteOne = async(req, res, next) => {
     await USER.findByIdAndDelete(req.params.id)
-    res.status(200).json({
-        success: true,
-        data: []
-    })
+        // res.status(200).json({
+        //     success: true,
+        //     data: []
+        // })
+    res.redirect('/user/getAll')
 };

@@ -15,7 +15,8 @@ exports.createOne = async(req, res, next) => {
 
     });
     result.save().then(() => {
-        res.json(result)
+        // res.json(result)
+        res.redirect('/mentors_collection/index')
     }).catch((error) => {
         res.json(error)
     })
@@ -25,7 +26,11 @@ exports.getAll = async(req, res, next) => {
             date: -1
         })
         .populate(['mentors_group_ID', 'mentor_ID', 'mentors_form_ID']);
-    res.json(result)
+    // res.json(result)
+    res.render("./admin/mentors_collection/index", {
+        layout: "./admin",
+        result
+    })
 };
 exports.update = async(req, res, next) => {
 
@@ -37,15 +42,17 @@ exports.update = async(req, res, next) => {
         result.collection_name = req.body.collection_name,
 
         result.save().then(() => {
-            res.json(result)
+            // res.json(result)
+            res.redirect('/mentors_collection/index')
         }).catch((err) => {
             res.json(err)
         })
 };
 exports.deleteOne = async(req, res, next) => {
     await MENTORS_COLLECTION.findByIdAndDelete(req.params.id)
-    res.status(200).json({
-        success: true,
-        data: []
-    })
+        // res.status(200).json({
+        //     success: true,
+        //     data: []
+        // })
+    res.redirect('/mentors_collection/index')
 };

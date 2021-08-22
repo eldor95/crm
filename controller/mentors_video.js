@@ -16,7 +16,8 @@ exports.createOne = async(req, res, next) => {
         video_time: req.body.video_time,
     });
     result.save().then(() => {
-        res.json(result)
+        // res.json(result)
+        res.redirect('/mentors_video/getAll')
     }).catch((error) => {
         res.json(error)
     })
@@ -26,7 +27,12 @@ exports.getAll = async(req, res, next) => {
             date: -1
         })
         .populate(['mentors_group_ID', 'mentor_ID', 'mentors_form_ID']);
-    res.json(result)
+    res.render("./admin/mentors_video/index", {
+            layout: "./admin",
+            result
+        })
+        // res.json(result)
+
 };
 exports.update = async(req, res, next) => {
 
@@ -40,15 +46,17 @@ exports.update = async(req, res, next) => {
     result.video_time = req.body.video_time;
 
     result.save().then(() => {
-        res.json(result)
+        // res.json(result)
+        res.redirect('/mentors_video/getAll')
     }).catch((err) => {
         res.json(err)
     })
 };
 exports.deleteOne = async(req, res, next) => {
     await MENTORS_VIDEO.findByIdAndDelete(req.params.id)
-    res.status(200).json({
-        success: true,
-        data: []
-    })
+        // res.status(200).json({
+        //     success: true,
+        //     data: []
+        // })
+    res.redirect('/mentors_video/getAll')
 };

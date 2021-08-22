@@ -12,7 +12,8 @@ exports.createOne = async(req, res, next) => {
         diler_ID: req.body.diler_ID
     });
     result.save().then(() => {
-        res.json(result)
+        // res.json(result)
+        res.redirect('/learning_center/index')
     }).catch((error) => {
         res.json(error)
     })
@@ -22,7 +23,11 @@ exports.getAll = async(req, res, next) => {
             date: -1
         })
         .populate(['viloyat_ID', 'tuman_ID', 'diler_ID']);
-    res.json(result)
+    // res.json(result)
+    res.render("./admin/learning_center/index", {
+        layout: "./admin",
+        result
+    })
 };
 exports.update = async(req, res, next) => {
     const result = await LEARNING_CENTER.findByIdAndUpdate(req.param.id);
@@ -31,15 +36,17 @@ exports.update = async(req, res, next) => {
     result.tuman_ID = req.body.tuman_ID;
     result.diler_ID = req.body.diler_ID;
     result.save().then(() => {
-        res.json(result)
+        // res.json(result)
+        res.redirect('/learning_center/index')
     }).catch((err) => {
         res.json(err)
     })
 };
 exports.deleteOne = async(req, res, next) => {
     await LEARNING_CENTER.findByIdAndDelete(req.params.id)
-    res.status(200).json({
-        success: true,
-        data: []
-    })
+        // res.status(200).json({
+        //     success: true,
+        //     data: []
+        // })
+    res.redirect('/learning_center/index')
 };

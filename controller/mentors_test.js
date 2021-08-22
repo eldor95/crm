@@ -15,7 +15,8 @@ exports.createOne = async(req, res, next) => {
     });
     result.save()
         .then(() => {
-            res.json(result)
+            // res.json(result)
+            res.redirect('/mentors_test/index')
         })
         .catch((error) => {
             res.json(error)
@@ -23,7 +24,11 @@ exports.createOne = async(req, res, next) => {
 };
 exports.getAll = async(req, res, next) => {
     const result = await MENTORS_TEST.find()
-    res.json(result)
+        // res.json(result)
+    res.render("./admin/mentors_test/index", {
+        layout: "./admin",
+        result
+    })
 };
 exports.update = async(req, res, next) => {
 
@@ -38,15 +43,17 @@ exports.update = async(req, res, next) => {
     result.status = req.body.status;
 
     result.save().then(() => {
-        res.json(result)
+        // res.json(result)
+        res.redirect('/mentors_test/index')
     }).catch((err) => {
         res.json(err)
     })
 };
 exports.deleteOne = async(req, res, next) => {
     await MENTORS_TEST.findByIdAndDelete(req.params.id)
-    res.status(200).json({
-        success: true,
-        data: []
-    })
+        // res.status(200).json({
+        //     success: true,
+        //     data: []
+        // })
+    res.redirect('/mentors_test/index')
 };
