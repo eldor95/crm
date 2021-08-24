@@ -1,5 +1,5 @@
 <div class="pt-3 pb-3 pl-3">
-    <h4>Kategoriyani tahrirlash</h4>
+    <h4>Viloyat tahrirlash</h4>
 </div>
 
 
@@ -7,8 +7,8 @@
     <div class="col-md-10 mt-3">
         <form method="POST" action="<%=`/viloyat/${result._id}?_method=PUT`%>" class="col-md-8">
             <div class="mb-3">
-                <label>Viloyat  nomi</label>
-                <input type="text" class="form-control" value="<%= result.name %>" name="name" />
+                <label>Viloyat nomi</label>
+                <input type="text" class="form-control" value="<%=result.name%>" name="name" />
             </div>
 
             <button type="submit" class="btn btn-primary col-md-5 mt-3">Saqlash</button>

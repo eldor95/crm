@@ -28,6 +28,14 @@ exports.getAll = async(req, res, next) => {
         result
     })
 };
+exports.getOne = async(req, res, next) => {
+
+    const result = await MENTORS_FORM.findById(req.params.id)
+    res.render("./admin/mentors_form/update", {
+        layout: "./admin",
+        result
+    });
+};
 exports.update = async(req, res, next) => {
 
     const result = await MENTORS_FORM.findByIdAndUpdate(req.param.id);

@@ -31,15 +31,15 @@ exports.getOne = async(req, res, next) => {
 };
 exports.updateOne = async(req, res, next) => {
     const result = await VILOYAT.findByIdAndUpdate(req.param.id);
-    result.name.uz = req.body.nameuz;
-    result.name.ru = req.body.nameru;
-    result.name.en = req.body.nameen;
-    result.save().then(() => {
-        // res.json(result)
-        res.redirect('/viloyat/getAll')
-    }).catch((err) => {
-        res.json(err)
-    })
+    result.name = req.body.name;
+
+    result.save()
+        .then(() => {
+            // res.json(result)
+            res.redirect('/viloyat/getAll')
+        }).catch((err) => {
+            res.json(err)
+        })
 };
 exports.deleteOne = async(req, res, next) => {
     await VILOYAT.findByIdAndDelete(req.params.id)

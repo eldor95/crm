@@ -28,6 +28,13 @@ exports.getAll = async(req, res, next) => {
         result
     })
 };
+exports.getOne = async(req, res, next) => {
+    const result = await MENTOR.findById(req.params.id)
+    res.render("./admin/mentor/update", {
+        layout: "./admin",
+        result
+    });
+};
 exports.update = async(req, res, next) => {
 
     const result = await MENTOR.findByIdAndUpdate(req.param.id);

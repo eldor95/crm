@@ -5,7 +5,7 @@ const Viloyat = mongoose.Schema({
     name: {
         type: String,
         require: true
-    },
+    }
 }, {
     timestamps: true
 })

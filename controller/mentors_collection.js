@@ -32,6 +32,14 @@ exports.getAll = async(req, res, next) => {
         result
     })
 };
+exports.getOne = async(req, res, next) => {
+
+    const result = await MENTORS_COLLECTION.findById(req.params.id)
+    res.render("./admin/mentors_collection/update", {
+        layout: "./admin",
+        result
+    });
+};
 exports.update = async(req, res, next) => {
 
     const result = await MENTORS_COLLECTION.findByIdAndUpdate(req.param.id);
