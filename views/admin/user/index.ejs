@@ -25,6 +25,10 @@
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>balance</th>
+                            <th>block</th>
                             <th>Date</th>
                             <th>Update, Delete</th>
                         </tr>
@@ -35,6 +39,18 @@
                             <tr>
                                 <td>
                                     <%= item.name  %>
+                                </td>
+                                <td>
+                                    <%= item.email  %>
+                                </td>
+                                <td>
+                                    <%= item.phone  %>
+                                </td>
+                                <td>
+                                    <%= item.balance  %>
+                                </td>
+                                <td>
+                                    <%= item.block  %>
                                 </td>
                                 <td>
                                     <%= moment(item.createdAt).format("DD-MM-YYYY")  %>
@@ -85,6 +101,22 @@
                     <div class="mb-4">
                         <label>Password</label>
                         <input type="password" name="password" class="form-control" placeholder=" Password kiriting" />
+                    </div>
+                    <div class="mb-4">
+                        <label>Phone</label>
+                        <input type="number" name="phone" class="form-control" placeholder="Foydalanuvchi nomini kiriting" />
+                    </div>
+                    <div class="mb-4">
+                        <label>Balance</label>
+                        <input type="text" name="balance" class="form-control" placeholder="Foydalanuvchi nomini kiriting" />
+                    </div>
+                    <div class="mb-4">
+                        <label>Block</label>
+                        <input type="text" name="block" class="form-control" placeholder="Foydalanuvchi nomini kiriting" />
+                    </div>
+                    <div class="mb-4">
+                        <label>Role</label>
+                        <input type="text" name="role" class="form-control" placeholder="Foydalanuvchi nomini kiriting" />
                     </div>
 
                     <button type="submit" class="btn btn-primary">Saqlash</button>

@@ -25,6 +25,9 @@
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>mentor</th>
+                            <th>Learning center</th>
+                            <th>fan</th>
                             <th>Date</th>
                             <th>Update, Delete</th>
                         </tr>
@@ -35,6 +38,15 @@
                             <tr>
                                 <td>
                                     <%= item.name  %>
+                                </td>
+                                <td>
+                                    <%= item.mentor_ID  %>
+                                </td>
+                                <td>
+                                    <%= item.lc_ID.name  %>
+                                </td>
+                                <td>
+                                    <%= item.fan_ID.name  %>
                                 </td>
                                 <td>
                                     <%= moment(item.createdAt).format("DD-MM-YYYY")  %>

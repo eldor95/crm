@@ -5,7 +5,8 @@ const fan = require('../controller/fan')
 
 router.post('/create', fan.createOne)
 router.get('/getAll', fan.getAll)
-router.put('/update', fan.update)
+router.get('/:id', fan.getOne)
+router.put('/:id', fan.update)
 router.delete('/delete', fan.deleteOne)
 
 module.exports = router

@@ -24,7 +24,9 @@
                 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            <th>Mentor name</th>
+                            <th>Mentor group</th>
+                            <th>Mentor form</th>
                             <th>Date</th>
                             <th>Update, Delete</th>
                         </tr>
@@ -34,7 +36,13 @@
                         <% for(let item of result) {%>
                             <tr>
                                 <td>
-                                    <%= item.name  %>
+                                    <%= item.mentor_ID.name  %>
+                                </td>
+                                <td>
+                                    <%= item.mentors_group_ID.name  %>
+                                </td>
+                                <td>
+                                    <%= item.mentors_form_ID.name  %>
                                 </td>
                                 <td>
                                     <%= moment(item.createdAt).format("DD-MM-YYYY")  %>

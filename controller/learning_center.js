@@ -11,12 +11,13 @@ exports.createOne = async(req, res, next) => {
         tuman_ID: req.body.tuman_ID,
         diler_ID: req.body.diler_ID
     });
-    result.save().then(() => {
-        // res.json(result)
-        res.redirect('/learning_center/index')
-    }).catch((error) => {
-        res.json(error)
-    })
+    result.save()
+        .then(() => {
+            // res.json(result)
+            res.redirect('/learning_center/index')
+        }).catch((error) => {
+            res.json(error)
+        })
 };
 exports.getAll = async(req, res, next) => {
     const result = await LEARNING_CENTER.find().sort({
@@ -28,6 +29,15 @@ exports.getAll = async(req, res, next) => {
         layout: "./admin",
         result
     })
+};
+
+exports.getOne = async(req, res, next) => {
+
+    const result = await LEARNING_CENTER.findById(req.params.id)
+    res.render("./admin/viloyat/update", {
+        layout: "./admin",
+        result
+    });
 };
 exports.update = async(req, res, next) => {
     const result = await LEARNING_CENTER.findByIdAndUpdate(req.param.id);

@@ -14,6 +14,8 @@ exports.createOne = async(req, res, next) => {
     })
 };
 exports.getAll = async(req, res, next) => {
+
+    const viloyat = await VILOYAT.find()
     const result = await TUMAN.find().sort({
             date: -1
         })
@@ -21,7 +23,8 @@ exports.getAll = async(req, res, next) => {
     // res.json(result)
     res.render("./admin/tuman/index", {
         layout: "./admin",
-        result
+        result,
+        viloyat
     })
 };
 exports.update = async(req, res, next) => {

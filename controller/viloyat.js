@@ -21,6 +21,14 @@ exports.getAll = async(req, res, next) => {
         })
         // res.json(result)
 };
+exports.getOne = async(req, res, next) => {
+
+    const result = await VILOYAT.findById(req.params.id)
+    res.render("./admin/viloyat/update", {
+        layout: "./admin",
+        result
+    });
+};
 exports.updateOne = async(req, res, next) => {
     const result = await VILOYAT.findByIdAndUpdate(req.param.id);
     result.name.uz = req.body.nameuz;

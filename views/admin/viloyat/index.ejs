@@ -41,10 +41,10 @@
                                 </td>
                                 <td style=" display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
 
-                                    <a class="btn btn-warning" href="<%=`/user/${item._id}`%>">
+                                    <a class="btn btn-warning" href="<%=`/viloyat/${item._id}`%>">
                                         <i class="fas fa-cog"></i>
                                     </a>
-                                    <form method="POST" class="hidden-r" action="<%=`/user/${item._id}?_method=DELETE`%>">
+                                    <form method="POST" class="hidden-r" action="<%=`/viloyat/${item._id}?_method=DELETE`%>">
                                         <button type="submit" class="btn btn-danger">
                                         <i class="fa fa-trash"></i>
                                       </button>
@@ -73,18 +73,10 @@
           </button>
             </div>
             <div class="modal-body">
-                <form action="/user/create" method="POST">
+                <form action="/viloyat/create" method="POST">
                     <div class="mb-4">
                         <label>Name</label>
                         <input type="text" name="name" class="form-control" placeholder="Foydalanuvchi nomini kiriting" />
-                    </div>
-                    <div class="mb-4">
-                        <label>Email</label>
-                        <input type="email" name="email" class="form-control" placeholder="Email kiriting" />
-                    </div>
-                    <div class="mb-4">
-                        <label>Password</label>
-                        <input type="password" name="password" class="form-control" placeholder=" Password kiriting" />
                     </div>
 
                     <button type="submit" class="btn btn-primary">Saqlash</button>

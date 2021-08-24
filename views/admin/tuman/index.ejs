@@ -24,7 +24,8 @@
                 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            <th>Viloyat</th>
+                            <th>Tuman</th>
                             <th>Date</th>
                             <th>Update, Delete</th>
                         </tr>
@@ -33,6 +34,9 @@
                     <tbody>
                         <% for(let item of result) {%>
                             <tr>
+                                <td>
+                                    <%= item.viloyat_ID.name  %>
+                                </td>
                                 <td>
                                     <%= item.name  %>
                                 </td>
@@ -74,18 +78,22 @@
             </div>
             <div class="modal-body">
                 <form action="/user/create" method="POST">
-                    <div class="mb-4">
-                        <label>Name</label>
-                        <input type="text" name="name" class="form-control" placeholder="Foydalanuvchi nomini kiriting" />
+                    <div class="mb-3 input-group mt-2" style="display: flex; flex-direction: column">
+                        <label for="">Kerakli kategoriyani tanlang </label>
+                        <select name="viloyat_ID" class="form-control">
+                          <option style="font-weight: bold">Tanlash ...</option>
+                          <% for (let item of viloyat) {%>
+                            <option value="<%= item._id %>">
+                              <%= item.name %>
+                            </option>
+                            <% } %>
+                        </select>
                     </div>
                     <div class="mb-4">
-                        <label>Email</label>
-                        <input type="email" name="email" class="form-control" placeholder="Email kiriting" />
+                        <label>Tuman</label>
+                        <input type="text" name="tuman" class="form-control" placeholder="Tuman kiriting" />
                     </div>
-                    <div class="mb-4">
-                        <label>Password</label>
-                        <input type="password" name="password" class="form-control" placeholder=" Password kiriting" />
-                    </div>
+
 
                     <button type="submit" class="btn btn-primary">Saqlash</button>
                 </form>
