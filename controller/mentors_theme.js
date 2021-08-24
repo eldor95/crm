@@ -29,6 +29,14 @@ exports.getAll = async(req, res, next) => {
         result
     })
 };
+exports.getOne = async(req, res, next) => {
+
+    const result = await MENTORS_THEME.findById(req.params.id)
+    res.render("./admin/mentors_theme/update", {
+        layout: "./admin",
+        result
+    });
+};
 exports.update = async(req, res, next) => {
 
     const result = await MENTORS_THEME.findByIdAndUpdate(req.param.id);

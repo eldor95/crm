@@ -28,6 +28,14 @@ exports.getAll = async(req, res, next) => {
         result
     })
 };
+exports.getOne = async(req, res, next) => {
+
+    const result = await STUDENTS_GROUP.findById(req.params.id)
+    res.render("./admin/students_group/update", {
+        layout: "./admin",
+        result
+    });
+};
 exports.update = async(req, res, next) => {
 
     const result = await STUDENTS_GROUP.findByIdAndUpdate(req.param.id);

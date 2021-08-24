@@ -27,6 +27,14 @@ exports.getAll = async(req, res, next) => {
         viloyat
     })
 };
+exports.getOne = async(req, res, next) => {
+
+    const result = await TUMAN.findById(req.params.id)
+    res.render("./admin/tuman/update", {
+        layout: "./admin",
+        result
+    });
+};
 exports.update = async(req, res, next) => {
     const result = await TUMAN.findByIdAndUpdate(req.param.id);
     result.name = req.body.name;

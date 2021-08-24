@@ -34,6 +34,14 @@ exports.getAll = async(req, res, next) => {
         // res.json(result)
 
 };
+exports.getOne = async(req, res, next) => {
+
+    const result = await MENTORS_VIDEO.findById(req.params.id)
+    res.render("./admin/mentors_video/update", {
+        layout: "./admin",
+        result
+    });
+};
 exports.update = async(req, res, next) => {
 
     const result = await MENTORS_VIDEO.findByIdAndUpdate(req.param.id);

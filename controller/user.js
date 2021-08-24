@@ -27,6 +27,14 @@ exports.getAll = async(req, res, next) => {
         result
     })
 };
+exports.getOne = async(req, res, next) => {
+
+    const result = await USER.findById(req.params.id)
+    res.render("./admin/user/update", {
+        layout: "./admin",
+        result
+    });
+};
 exports.update = async(req, res, next) => {
 
     const result = await USER.findByIdAndUpdate(req.param.id);

@@ -30,6 +30,14 @@ exports.getAll = async(req, res, next) => {
         result
     })
 };
+exports.getOne = async(req, res, next) => {
+
+    const result = await MENTORS_TEST.findById(req.params.id)
+    res.render("./admin/mentors_test/update", {
+        layout: "./admin",
+        result
+    });
+};
 exports.update = async(req, res, next) => {
 
     const result = await MENTORS_TEST.findByIdAndUpdate(req.param.id);
