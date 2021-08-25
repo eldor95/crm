@@ -30,7 +30,7 @@ exports.getOne = async(req, res, next) => {
     });
 };
 exports.updateOne = async(req, res, next) => {
-    const result = await VILOYAT.findByIdAndUpdate(req.param.id);
+    const result = await VILOYAT.findByIdAndUpdate(req.params.id);
     result.name = req.body.name;
 
     result.save()
