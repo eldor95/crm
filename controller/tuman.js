@@ -54,3 +54,15 @@ exports.deleteOne = async(req, res, next) => {
         // })
     res.redirect('/tuman/getAll')
 };
+
+exports.get_Tuman_By_Id_Viloyat = async(req, res, next) => {
+    await TUMAN.find({ viloyat_ID: req.params.id })
+        .populate(["viloyar_ID"])
+        .exec(async(error, data) => {
+            if (error) {
+                throw error
+            } else {
+                res.json(data)
+            }
+        })
+}

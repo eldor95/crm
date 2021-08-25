@@ -13,13 +13,14 @@ exports.createOne = async(req, res, next) => {
     });
     result.save()
         .then(() => {
-            // res.json(result)
-            res.redirect('/learning_center/index')
+            res.json(result)
         }).catch((error) => {
             res.json(error)
         })
 };
 exports.getAll = async(req, res, next) => {
+    const viloyat = await VILOYAT.find()
+    const tuman = await TUMAN.find()
     const result = await LEARNING_CENTER.find().sort({
             date: -1
         })
@@ -27,7 +28,9 @@ exports.getAll = async(req, res, next) => {
     // res.json(result)
     res.render("./admin/learning_center/index", {
         layout: "./admin",
-        result
+        result,
+        viloyat,
+        tuman
     })
 };
 
@@ -40,14 +43,14 @@ exports.getOne = async(req, res, next) => {
     });
 };
 exports.update = async(req, res, next) => {
-    const result = await LEARNING_CENTER.findByIdAndUpdate(req.param.id);
+    const result = await LEARNING_CENTER.findByIdAndUpdate(req.params.id);
     result.name = req.body.name;
     result.viloyat_ID = req.body.viloyat_ID;
     result.tuman_ID = req.body.tuman_ID;
     result.diler_ID = req.body.diler_ID;
     result.save().then(() => {
         // res.json(result)
-        res.redirect('/learning_center/index')
+        res.redirect('/learning_center/getAll')
     }).catch((err) => {
         res.json(err)
     })
@@ -58,5 +61,5 @@ exports.deleteOne = async(req, res, next) => {
         //     success: true,
         //     data: []
         // })
-    res.redirect('/learning_center/index')
+    res.redirect('/learning_center/getAll')
 };

@@ -10,8 +10,8 @@
             <h4 class="m-3" style="font-weight: 700;">Foydalanuvchilar bulimi</h4>
 
             <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-lg">
-          Foydalanuvchi qushish
-        </button>
+                Foydalanuvchi qushish
+            </button>
         </div>
 
 
@@ -59,7 +59,7 @@
                                     <form method="POST" class="hidden-r" action="<%=`/learning_center/${item._id}?_method=DELETE`%>">
                                         <button type="submit" class="btn btn-danger">
                                         <i class="fa fa-trash"></i>
-                                      </button>
+                                    </button>
                                     </form>
                                 </td>
 
@@ -79,36 +79,104 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title mt-0" id="myLargeModalLabel">Kategoriya yaratish</h5>
+                <h5 class="modal-title mt-0" id="myLargeModalLabel">O'quv markazi yaratish</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
-                <form action="/learning_center/create" method="POST">
-                    <div class="mb-4">
-                        <label>Name</label>
-                        <input type="text" name="name" class="form-control" placeholder="Foydalanuvchi nomini kiriting" />
-                    </div>
-                    <div class="mb-3 input-group mt-2" style="display: flex; flex-direction: column">
-                        <label for=""> Viloyat tanlang </label>
-                        <select name="viloyat_ID" class="form-control">
-                          <option style="font-weight: bold">Tanlash ...</option>
-                          <% for (let item of viloyat) {%>
-                            <option value="<%= item._id %>">
-                              <%= item.name %>
-                            </option>
-                            <% } %>
-                        </select>
-                    </div>
-                    <div class="mb-4">
-                        <label>Password</label>
-                        <input type="password" name="password" class="form-control" placeholder=" Password kiriting" />
-                    </div>
+                <!-- <form action="/learning_center/create" method="POST"> -->
+                <div class="mb-4">
+                    <label>O'quv markazining nomi</label>
+                    <input type="text" name="name" class="form-control" id="ls_name" placeholder="O'quv markazini nomini kiriting" />
+                </div>
+                <div class="mb-3 input-group mt-2" style="display: flex; flex-direction: column">
+                    <label for=""> Viloyat tanlang </label>
+                    <select name="viloyat_ID" class="form-control" id="filter_viloyat">
+                        <option style="font-weight: bold">Tanlash ...</option>
+                        <% for (let item of viloyat) {%>
+                        <option value="<%= item._id %>">
+                            <%= item.name %>
+                        </option>
+                        <% } %>
+                    </select>
+                </div>
+                <div id="filter_tuman" class="mb-3 input-group mt-2" style="display: flex; flex-direction: column">
+                    <label for=""> Tuman tanlang </label>
+                    <select name="tuman_ID" class="form-control select_tuman" id="filter_tumansssss">
 
-                    <button type="submit" class="btn btn-primary">Saqlash</button>
-                </form>
+
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label>Dilerni tanlash</label>
+                    <select name="diler_ID" class="form-control filter_diler" id="filter_dilersss">
+                        
+                    </select>
+                </div>
+
+                <button type="button" id="create_leraning_center" class="btn btn-primary">Saqlash</button>
+                <!-- </form> -->
             </div>
         </div>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+
+<script>
+    // bitta viloyatni id si boyicha tumanlarni ajratsih
+    const filter_viloyat = document.getElementById("filter_viloyat");
+    document.getElementById('filter_tuman').style.display = "none"
+    filter_viloyat.addEventListener("change", () => {
+        filterMe();
+    });
+
+    function filterMe() {
+        axios.get(`/tuman/filter_viloyat/${filter_viloyat.value}`)
+            .then(async(res) => {
+                const result = res.data
+                document.getElementById('filter_tuman').style.display = "block"
+                let select = $("#filter_tumansssss");
+                await select.html("");
+                select.append(`<option style="font-weight: bold">Tanlash ...</option>`);
+                result.forEach((item) => {
+                    select.append(`<option class="tema" value="${item._id}">` + item.name + "</option>");
+                });
+            });
+    }
+
+    // hamma dilerlarni olish
+    axios.get('/user/filter_diler')
+        .then(async(res) => {
+            const result = res.data
+            let select = $("#filter_dilersss");
+            await select.html("");
+            select.append(` <option style = "font-weight: bold" > Tanlash... </option>`);
+            result.forEach((item) => {
+                select.append(`<option class="tema" value="${item._id}">` + item.name + "</option>");
+            });
+        });
+
+
+
+
+    // markazni yaratish
+    const create_leraning_center = document.getElementById('create_leraning_center')
+    create_leraning_center.addEventListener("click", () => {
+        const viloyat = document.getElementById('filter_viloyat')
+        const tuman = document.getElementById('filter_tumansssss')
+        const diler = document.getElementById('filter_dilersss')
+        const name = document.getElementById('ls_name')
+        axios.post('/learning_center/create', {
+            name: name.value,
+            viloyat_ID: viloyat.value,
+            tuman_ID: tuman.value,
+            diler_ID: diler.value
+        }).then((res) => {
+            location.reload()
+        }).catch((e) => {
+            console.log(e)
+        })
+    })
+</script>

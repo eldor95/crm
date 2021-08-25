@@ -6,6 +6,7 @@ const user = require('../controller/user')
 router.post('/create', user.createOne)
 router.get('/getAll', user.getAll)
 router.put('/:id', user.update)
-router.delete('/delete', user.deleteOne)
+router.delete('/:id', user.deleteOne)
+router.get('/filter_diler', user.filtre_diler)
 
 module.exports = router

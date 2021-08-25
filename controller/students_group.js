@@ -38,7 +38,7 @@ exports.getOne = async(req, res, next) => {
 };
 exports.update = async(req, res, next) => {
 
-    const result = await STUDENTS_GROUP.findByIdAndUpdate(req.param.id);
+    const result = await STUDENTS_GROUP.findByIdAndUpdate(req.params.id);
     result.mentor_ID = req.body.mentor_ID;
     result.group_ID = req.body.group_ID;
     result.student_ID = req.body.student_ID;

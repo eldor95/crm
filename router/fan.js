@@ -7,6 +7,6 @@ router.post('/create', fan.createOne)
 router.get('/getAll', fan.getAll)
 router.get('/:id', fan.getOne)
 router.put('/:id', fan.update)
-router.delete('/delete', fan.deleteOne)
+router.delete('/:id', fan.deleteOne)
 
 module.exports = router

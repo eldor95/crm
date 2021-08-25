@@ -62,3 +62,13 @@ exports.deleteOne = async(req, res, next) => {
         // })
     res.redirect('/user/getAll')
 };
+exports.filtre_diler = async(req, res, next) => {
+    await USER.find({ role: { $in: 'diler' } })
+        .exec(async(error, data) => {
+            if (error) {
+                throw error
+            } else {
+                res.json(data)
+            }
+        })
+};

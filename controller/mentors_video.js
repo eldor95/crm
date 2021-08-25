@@ -44,7 +44,7 @@ exports.getOne = async(req, res, next) => {
 };
 exports.update = async(req, res, next) => {
 
-    const result = await MENTORS_VIDEO.findByIdAndUpdate(req.param.id);
+    const result = await MENTORS_VIDEO.findByIdAndUpdate(req.params.id);
     result.mentor_ID = req.body.mentor_ID;
     result.mentors_group_ID = req.body.mentors_group_ID;
     result.mentors_form_ID = req.body.mentors_form_ID;

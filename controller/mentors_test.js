@@ -40,7 +40,7 @@ exports.getOne = async(req, res, next) => {
 };
 exports.update = async(req, res, next) => {
 
-    const result = await MENTORS_TEST.findByIdAndUpdate(req.param.id);
+    const result = await MENTORS_TEST.findByIdAndUpdate(req.params.id);
     result.question = req.body.question;
     result.options.a = req.body.options_a;
     result.options.b = req.body.options_b;

@@ -1,6 +1,6 @@
 const FAN = require('../module/fan')
 const USER = require('../module/user')
-const LC = require('../module/learning_center')
+const LEARNING_CENTER = require('../module/learning_center')
 
 
 exports.createOne = async(req, res, next) => {
@@ -18,7 +18,7 @@ exports.createOne = async(req, res, next) => {
 };
 exports.getAll = async(req, res, next) => {
     const user = await USER.find()
-    const learning_center = await LC.find()
+    const learning_center = await LEARNING_CENTER.find()
     const result = await FAN.find().sort({
             date: -1
         })
@@ -36,7 +36,7 @@ exports.getOne = async(req, res, next) => {
 
     const result = await FAN.findById(req.params.id)
     const user = await USER.find()
-    const learning_center = await LC.find()
+    const learning_center = await LEARNING_CENTER.find()
     res.render("./admin/fan/update", {
         layout: "./admin",
         result,
@@ -47,7 +47,7 @@ exports.getOne = async(req, res, next) => {
 
 exports.update = async(req, res, next) => {
 
-    const result = await FAN.findByIdAndUpdate(req.param.id);
+    const result = await FAN.findByIdAndUpdate(req.params.id);
 
     result.name = req.body.name;
     result.lc_ID = req.body.lc_ID;

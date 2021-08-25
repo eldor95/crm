@@ -6,6 +6,6 @@ const mentors_form = require('../controller/mentors_form')
 router.post('/create', mentors_form.createOne)
 router.get('/getAll', mentors_form.getAll)
 router.put('/:id', mentors_form.update)
-router.delete('/delete', mentors_form.deleteOne)
+router.delete('/:id', mentors_form.deleteOne)
 
 module.exports = router
