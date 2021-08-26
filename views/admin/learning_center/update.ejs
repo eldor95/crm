@@ -1,17 +1,78 @@
 <div class="pt-3 pb-3 pl-3">
-    <h4>Kategoriyani tahrirlash</h4>
+    <h4>O'quv markazi tahrirlash</h4>
 </div>
-
 
 <div class="row">
     <div class="col-md-10 mt-3">
-        <form method="POST" action="<%=`/category/${result._id}?_method=PUT`%>" class="col-md-8">
+        <form method="POST" action="<%=`/learning_center/${result._id}?_method=PUT`%>" class="col-md-8">
             <div class="mb-3">
-                <label>Kategoriya  nomi</label>
+                <label>O'quv markazi nomimi kiriting</label>
                 <input type="text" class="form-control" value="<%= result.name %>" name="name" />
             </div>
+            <div class="mb-4">
+                <label>Dilerni tanlash</label>
+                <select name="diler_ID" class="form-control filter_diler" id="filter_dilersss">
+                </select>
+            </div>
+            <div class="mb-4">
+                <label>Tumanni tanlash</label>
+                <select name="Tuman_ID" class="form-control" id="filter_tuman">
+                </select>
+            </div>
+            <div class="mb-4">
+                <label>viloyat tanlash</label>
+                <select name="Tuman_ID" class="form-control" id="filter_tuman">
+                </select>
+            </div>
+
 
             <button type="submit" class="btn btn-primary col-md-5 mt-3">Saqlash</button>
         </form>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+
+<script>
+    // axios.get('/user/filter_diler')
+    //     .then(async(res) => {
+    //         const result = res.data
+    //         let select = $("#filter_dilersss");
+    //         await select.html("");
+    //         select.append(` <option style = "font-weight: bold" > Tanlash... </option>`);
+    //         result.forEach((item) => {
+    //             select.append(`<option class="tema" value="${item._id}">` + item.name + "</option>");
+    //         });
+    //     });
+
+    // axios.get('/user/filter_diler')
+    //     .then(async(res) => {
+    //         const result = res.data
+    //         let select = $("#filter_dilersss");
+    //         await select.html("");
+    //         select.append(`<option style="front-weight:bold"></option>`);
+    //         result.forEach((item) => {
+    //             select.append(`<option class="tema" value="${item._id}">` + item.name + "</option>")
+    //         });
+    //     });
+    // axios.get('/tuman/filter_diler')
+    //     .then(async(res) => {
+    //         const result = res.data
+    //         let select = $("#filter_tuman");
+    //         await select.html("");
+    //         select.append(`<option style="front-weight:bold"> Tanlash...</option>`);
+    //         result.forEach((item) => {
+    //             select.append(`<option class="tema" value="${item._id}">` + item.name + "</option>")
+    //         });
+    //     });
+    // axios.get('/viloyat/filter_diler')
+    //     .then(async(res) => {
+    //         const result = res.data
+    //         let select = $("#filter_tuman");
+    //         await select.html("");
+    //         select.append(`<option style="front-weight:bold"> Tanlash...</option>`);
+    //         result.forEach((item) => {
+    //             select.append(`<option class="tema" value="${item._id}">` + item.name + "</option>")
+    //         });
+    //     });
+</script>

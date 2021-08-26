@@ -19,17 +19,16 @@ const User = mongoose.Schema({
     },
     balance: {
         type: Boolean,
-        default: 0
+        default: true
     },
     block: {
         type: Boolean,
         enum: [false, true],
         default: true
     },
-    // image: {
-    //     type: String,
-    //     required: true
-    // },
+    image: {
+        type: String,
+    },
     role: {
         type: String,
         enum: ['admin', 'mentor', 'diler', 'student']

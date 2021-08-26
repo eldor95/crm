@@ -17,7 +17,11 @@ exports.createOne = async(req, res, next) => {
     })
 };
 exports.getAll = async(req, res, next) => {
-    const user = await USER.find()
+    const user = await USER.find({
+        role: {
+            $in: "diler"
+        }
+    })
     const learning_center = await LEARNING_CENTER.find()
     const result = await FAN.find().sort({
             date: -1
@@ -35,7 +39,11 @@ exports.getAll = async(req, res, next) => {
 exports.getOne = async(req, res, next) => {
 
     const result = await FAN.findById(req.params.id)
-    const user = await USER.find()
+    const user = await USER.find({
+        role: {
+            $in: 'diler'
+        }.exec(data)
+    })
     const learning_center = await LEARNING_CENTER.find()
     res.render("./admin/fan/update", {
         layout: "./admin",

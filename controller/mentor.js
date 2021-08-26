@@ -12,12 +12,15 @@ exports.createOne = async(req, res, next) => {
     });
     result.save().then(() => {
         // res.json(result)
-        res.redirect('/mentor/index')
+        res.redirect('/mentor/getAll')
     }).catch((error) => {
         res.json(error)
     })
 };
 exports.getAll = async(req, res, next) => {
+    const fan = await FAN.find()
+    const user = await USER.find()
+    const learning_center = await LEARNING_CENTER.find()
     const result = await MENTOR.find().sort({
             date: -1
         })
@@ -25,7 +28,10 @@ exports.getAll = async(req, res, next) => {
     // res.json(result)
     res.render("./admin/mentor/index", {
         layout: "./admin",
-        result
+        result,
+        fan,
+        user,
+        learning_center
     })
 };
 exports.getOne = async(req, res, next) => {
@@ -44,7 +50,7 @@ exports.update = async(req, res, next) => {
 
     result.save().then(() => {
         // res.json(result)
-        res.redirect('/mentor/index')
+        res.redirect('/mentor/getAll')
     }).catch((err) => {
         res.json(err)
     })
@@ -55,5 +61,5 @@ exports.deleteOne = async(req, res, next) => {
         //     success: true,
         //     data: []
         // })
-    res.redirect('/mentor/index')
+    res.redirect('/mentor/getAll')
 };

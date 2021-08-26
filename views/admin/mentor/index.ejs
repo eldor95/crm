@@ -37,6 +37,12 @@
                                     <%= item.mentor_ID.name  %>
                                 </td>
                                 <td>
+                                    <%= item.fan_ID.name  %>
+                                </td>
+                                <td>
+                                    <%= item.lc_ID.name  %>
+                                </td>
+                                <td>
                                     <%= moment(item.createdAt).format("DD-MM-YYYY")  %>
                                 </td>
                                 <td style=" display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
@@ -73,20 +79,40 @@
           </button>
             </div>
             <div class="modal-body">
-                <form action="/user/create" method="POST">
-                    <div class="mb-4">
-                        <label>Name</label>
-                        <input type="text" name="name" class="form-control" placeholder="Foydalanuvchi nomini kiriting" />
+                <form action="/mentor/create" method="POST">
+                    <div class="mb-3 input-group mt-2" style="display: flex; flex-direction: column">
+                        <label for=""> Mentor tanlang </label>
+                        <select name="mentor_ID" class="form-control" id="filter_viloyat">
+                            <option style="font-weight: bold">Tanlash ...</option>
+                            <% for (let item of user) {%>
+                            <option value="<%= item._id %>">
+                                <%= item.name %>
+                            </option>
+                            <% } %>
+                        </select>
                     </div>
-                    <div class="mb-4">
-                        <label>Email</label>
-                        <input type="email" name="email" class="form-control" placeholder="Email kiriting" />
+                    <div class="mb-3 input-group mt-2" style="display: flex; flex-direction: column">
+                        <label for=""> Fan tanlang </label>
+                        <select name="fan_ID" class="form-control" id="filter_viloyat">
+                            <option style="font-weight: bold">Tanlash ...</option>
+                            <% for (let item of fan) {%>
+                            <option value="<%= item._id %>">
+                                <%= item.name %>
+                            </option>
+                            <% } %>
+                        </select>
                     </div>
-                    <div class="mb-4">
-                        <label>Password</label>
-                        <input type="password" name="password" class="form-control" placeholder=" Password kiriting" />
+                    <div class="mb-3 input-group mt-2" style="display: flex; flex-direction: column">
+                        <label for=""> O'quv markazi tanlang </label>
+                        <select name="lc_ID" class="form-control" id="filter_viloyat">
+                            <option style="font-weight: bold">Tanlash ...</option>
+                            <% for (let item of learning_center) {%>
+                            <option value="<%= item._id %>">
+                                <%= item.name %>
+                            </option>
+                            <% } %>
+                        </select>
                     </div>
-
                     <button type="submit" class="btn btn-primary">Saqlash</button>
                 </form>
             </div>

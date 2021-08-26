@@ -63,3 +63,16 @@ exports.deleteOne = async(req, res, next) => {
         // })
     res.redirect('/learning_center/getAll')
 };
+
+exports.filter_uquv_markazi_diler = async(req, res, next) => {
+    await LEARNING_CENTER.find({
+            diler_ID: req.params.id
+        }).populate(['diler_ID'])
+        .exec(async(error, data) => {
+            if (error) {
+                throw error
+            } else {
+                res.json(data)
+            }
+        })
+}

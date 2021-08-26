@@ -27,49 +27,50 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
-                            <th>balance</th>
-                            <th>block</th>
+                            <th>Balance</th>
+                            <th>Image</th>
                             <th>Date</th>
                             <th>Update, Delete</th>
                         </tr>
                     </thead>
 
-                    <tbody>
-                        <% for(let item of result) {%>
-                            <tr>
-                                <td>
-                                    <%= item.name  %>
-                                </td>
-                                <td>
-                                    <%= item.email  %>
-                                </td>
-                                <td>
-                                    <%= item.phone  %>
-                                </td>
-                                <td>
-                                    <%= item.balance  %>
-                                </td>
-                                <td>
-                                    <%= item.block  %>
-                                </td>
-                                <td>
-                                    <%= moment(item.createdAt).format("DD-MM-YYYY")  %>
-                                </td>
-                                <td style=" display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
+                    <% console.log(result) %>
 
-                                    <a class="btn btn-warning" href="<%=`/user/${item._id}`%>">
-                                        <i class="fas fa-cog"></i>
-                                    </a>
-                                    <form method="POST" class="hidden-r" action="<%=`/user/${item._id}?_method=DELETE`%>">
-                                        <button type="submit" class="btn btn-danger">
+                        <tbody>
+                            <% for(let item of result) {%>
+                                <tr>
+                                    <td>
+                                        <%= item.name  %>
+                                    </td>
+                                    <td>
+                                        <%= item.email  %>
+                                    </td>
+                                    <td>
+                                        <%= item.phone  %>
+                                    </td>
+                                    <td>
+                                        <%= item.balance  %>
+                                    </td>
+                                    <td>
+                                        <img style="width: 50px;" src="/orginal/<%=item.image %>" alt="">
+                                    </td>
+                                    <td>
+                                        <%= moment(item.createdAt).format("DD-MM-YYYY")  %>
+                                    </td>
+                                    <td style=" display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
+
+                                        <a class="btn btn-warning" href="<%=`/user/${item._id}`%>">
+                                            <i class="fas fa-cog"></i>
+                                        </a>
+                                        <form method="POST" class="hidden-r" action="<%=`/user/${item._id}?_method=DELETE`%>">
+                                            <button type="submit" class="btn btn-danger">
                                         <i class="fa fa-trash"></i>
                                       </button>
-                                    </form>
-                                </td>
-
-                            </tr>
-                            <% } %>
-                    </tbody>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <% } %>
+                        </tbody>
 
                 </table>
 
@@ -83,7 +84,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title mt-0" id="myLargeModalLabel">Kategoriya yaratish</h5>
+                <h5 class="modal-title mt-0" id="myLargeModalLabel">Foydalanuvchi yaratish</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -106,17 +107,22 @@
                         <label>Phone</label>
                         <input type="number" name="phone" class="form-control" placeholder="Foydalanuvchi nomini kiriting" />
                     </div>
-                    <div class="mb-4">
+                    <!-- <div class="mb-4">
                         <label>Balance</label>
                         <input type="text" name="balance" class="form-control" placeholder="Foydalanuvchi nomini kiriting" />
-                    </div>
-                    <div class="mb-4">
+                    </div> -->
+
+                    <!-- <div class="mb-4">
                         <label>Block</label>
                         <input type="text" name="block" class="form-control" placeholder="Foydalanuvchi nomini kiriting" />
-                    </div>
+                    </div> -->
                     <div class="mb-4">
                         <label>Role</label>
-                        <input type="text" name="role" class="form-control" placeholder="Foydalanuvchi nomini kiriting" />
+                        <input type="text" name="role" class="form-control" placeholder="Foydalanuvchi rolini kiriting" />
+                    </div>
+                    <div class="mb-4">
+                        <label>Rasm</label>
+                        <input type="file" name="image" />
                     </div>
 
                     <button type="submit" class="btn btn-primary">Saqlash</button>
