@@ -1,6 +1,35 @@
 const USER = require('../module/user')
+const path = require('path')
+const sharp = require('sharp')
 
 exports.createOne = async(req, res, next) => {
+    // let compressedFile = path.join(__dirname, '../public/convert2', md5(new Date().getTime()) + '.jpg')
+    //     // rasmni qirqish jarayoni
+    // sharp(req.file.path) // req.file.path - bu original rasm
+    //     .resize(400, 400)
+    //     .jpeg({ quality: 100 })
+    //     .toFile(compressedFile, (error) => {
+    //         if (error) {
+    //             res.send(error)
+    //         }
+    //         //origininal rasmni ochirib yuboradi
+    //         fs.unlink(req.file.path, async(error) => {
+    //             []
+    //         })
+    //     })
+    let compressedFile = path.join(__dirname, '../public/convert', md5(new Date().getTime()) + '.jpg')
+
+    sharp(req.file.path)
+        .resize(400, 400)
+        .jpeg({
+            quality: 100
+        })
+        .toFile(compressedFile, (error) => {
+            if (error) {
+                res.send(error)
+            }
+        })
+
     const result = new USER({
         name: req.body.name,
         email: req.body.email,
@@ -8,7 +37,7 @@ exports.createOne = async(req, res, next) => {
         phone: req.body.phone,
         balance: req.body.balance,
         block: req.body.block,
-        // image: req.file.filename,
+        image: req.file.filename,
         role: req.body.role,
     });
     result.save().then(() => {
