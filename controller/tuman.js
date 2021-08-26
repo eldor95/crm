@@ -28,15 +28,16 @@ exports.getAll = async(req, res, next) => {
     })
 };
 exports.getOne = async(req, res, next) => {
-
+    const viloyat = await VILOYAT.find()
     const result = await TUMAN.findById(req.params.id)
     res.render("./admin/tuman/update", {
         layout: "./admin",
-        result
+        result,
+        viloyat
     });
 };
 exports.update = async(req, res, next) => {
-    const result = await TUMAN.findByIdAndUpdate(req.param.id);
+    const result = await TUMAN.findByIdAndUpdate(req.params.id);
     result.name = req.body.name;
     result.viloyat_ID = req.body.viloyat_ID;
     result.save().then(() => {

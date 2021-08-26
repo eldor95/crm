@@ -5,6 +5,7 @@ const tuman = require('../controller/tuman')
 
 router.post('/create', tuman.createOne)
 router.get('/getAll', tuman.getAll)
+router.get('/:id', tuman.getOne)
 router.put('/:id', tuman.update)
 router.delete('/:id', tuman.deleteOne)
 router.get('/filter_viloyat/:id', tuman.get_Tuman_By_Id_Viloyat)

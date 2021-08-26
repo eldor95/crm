@@ -1,11 +1,11 @@
 <div class="pt-3 pb-3 pl-3">
-    <h4>Kategoriyani tahrirlash</h4>
+    <h4>Foydalanuvchilarni tahrirlash</h4>
 </div>
 
 
 <div class="row">
     <div class="col-md-10 mt-3">
-        <form method="POST" action="<%=`/category/${result._id}?_method=PUT`%>" class="col-md-8">
+        <form method="POST" action="<%=`/user/${result._id}?_method=PUT`%>" class="col-md-8">
             <div class="mb-3">
                 <label>Kategoriya  nomi</label>
                 <input type="text" class="form-control" value="<%= result.name %>" name="name" />

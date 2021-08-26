@@ -45,10 +45,10 @@
                                 </td>
                                 <td style=" display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
 
-                                    <a class="btn btn-warning" href="<%=`/user/${item._id}`%>">
+                                    <a class="btn btn-warning" href="<%=`/tuman/${item._id}`%>">
                                         <i class="fas fa-cog"></i>
                                     </a>
-                                    <form method="POST" class="hidden-r" action="<%=`/user/${item._id}?_method=DELETE`%>">
+                                    <form method="POST" class="hidden-r" action="<%=`/tuman/${item._id}?_method=DELETE`%>">
                                         <button type="submit" class="btn btn-danger">
                                         <i class="fa fa-trash"></i>
                                       </button>
@@ -77,9 +77,9 @@
           </button>
             </div>
             <div class="modal-body">
-                <form action="/user/create" method="POST">
+                <form action="/tuman/create" method="POST">
                     <div class="mb-3 input-group mt-2" style="display: flex; flex-direction: column">
-                        <label for="">Kerakli kategoriyani tanlang </label>
+                        <label for="">Tuman kiriting </label>
                         <select name="viloyat_ID" class="form-control">
                           <option style="font-weight: bold">Tanlash ...</option>
                           <% for (let item of viloyat) {%>
@@ -91,7 +91,7 @@
                     </div>
                     <div class="mb-4">
                         <label>Tuman</label>
-                        <input type="text" name="tuman" class="form-control" placeholder="Tuman kiriting" />
+                        <input type="text" name="name" class="form-control" placeholder="Tuman kiriting" />
                     </div>
 
 

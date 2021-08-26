@@ -37,10 +37,10 @@ exports.getOne = async(req, res, next) => {
 };
 exports.update = async(req, res, next) => {
 
-    const result = await USER.findByIdAndUpdate(req.param.id);
+    const result = await USER.findByIdAndUpdate(req.params.id);
     result.name = req.body.name;
     result.email = req.body.email;
-    result.password = req.body.password;
+    // result.password = req.body.password;
     result.phone = req.body.phone;
     result.balance = req.body.balance;
     result.block = req.body.block;
@@ -63,7 +63,11 @@ exports.deleteOne = async(req, res, next) => {
     res.redirect('/user/getAll')
 };
 exports.filtre_diler = async(req, res, next) => {
-    await USER.find({ role: { $in: 'diler' } })
+    await USER.find({
+            role: {
+                $in: 'diler'
+            }
+        })
         .exec(async(error, data) => {
             if (error) {
                 throw error
@@ -72,3 +76,16 @@ exports.filtre_diler = async(req, res, next) => {
             }
         })
 };
+exports.filter_student = async(req, res, next) => {
+    await USER.find({
+        role: {
+            $in: 'student'
+        }
+    }).exec(async(error, data) => {
+        if (error) {
+            throw error
+        } else {
+            res.json(data)
+        }
+    })
+}

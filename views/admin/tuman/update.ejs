@@ -1,14 +1,25 @@
 <div class="pt-3 pb-3 pl-3">
-    <h4>Kategoriyani tahrirlash</h4>
+    <h4>Tumanni tahrirlash</h4>
 </div>
 
 
 <div class="row">
     <div class="col-md-10 mt-3">
-        <form method="POST" action="<%=`/category/${result._id}?_method=PUT`%>" class="col-md-8">
+        <form method="POST" action="<%=`/tuman/${result._id}?_method=PUT`%>" class="col-md-8">
             <div class="mb-3">
-                <label>Kategoriya  nomi</label>
+                <label>Tuman kiriting</label>
                 <input type="text" class="form-control" value="<%= result.name %>" name="name" />
+            </div>
+            <div class="mb-3 input-group mt-2" style="display: flex; flex-direction: column">
+                <label for=""> Viloyat tanlang </label>
+                <select name="viloyat_ID" class="form-control">
+                  <option style="font-weight: bold">Tanlash ...</option>
+                  <% for (let item of viloyat) {%>
+                    <option value="<%= item._id %>">
+                      <%= item.name %>
+                    </option>
+                    <% } %>
+                </select>
             </div>
 
             <button type="submit" class="btn btn-primary col-md-5 mt-3">Saqlash</button>
