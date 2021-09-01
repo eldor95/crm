@@ -7,10 +7,10 @@
           justify-content: space-between; 
           align-items: center;
         ">
-            <h4 class="m-3" style="font-weight: 700;">Foydalanuvchilar bulimi</h4>
+            <h4 class="m-3" style="font-weight: 700;">Mentorning groupasi bulimi</h4>
 
             <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-lg">
-          Foydalanuvchi qushish
+                Mentorning groupasi  qushish
         </button>
         </div>
 
@@ -85,18 +85,43 @@
           </button>
             </div>
             <div class="modal-body">
-                <form action="/user/create" method="POST">
+                <form action="/mentors_group/create" method="POST">
                     <div class="mb-4">
                         <label>Name</label>
                         <input type="text" name="name" class="form-control" placeholder="Foydalanuvchi nomini kiriting" />
                     </div>
-                    <div class="mb-4">
-                        <label>Email</label>
-                        <input type="email" name="email" class="form-control" placeholder="Email kiriting" />
+                    <div class="mb-3 input-group mt-2" style="display: flex; flex-direction: column">
+                        <label for="">Learning center kiriting </label>
+                        <select name="lc_ID" class="form-control">
+                          <option style="font-weight: bold">Tanlash ...</option>
+                          <% for (let item of learning_center) {%>
+                            <option value="<%= item._id %>">
+                              <%= item.name %>
+                            </option>
+                            <% } %>
+                        </select>
                     </div>
-                    <div class="mb-4">
-                        <label>Password</label>
-                        <input type="password" name="password" class="form-control" placeholder=" Password kiriting" />
+                    <div class="mb-3 input-group mt-2" style="display: flex; flex-direction: column">
+                        <label for=""> Fan kiriting </label>
+                        <select name="fan_ID" class="form-control">
+                          <option style="font-weight: bold">Tanlash ...</option>
+                          <% for (let item of fan) {%>
+                            <option value="<%= item._id %>">
+                              <%= item.name %>
+                            </option>
+                            <% } %>
+                        </select>
+                    </div>
+                    <div class="mb-3 input-group mt-2" style="display: flex; flex-direction: column">
+                        <label for="">Mentor kiriting </label>
+                        <select name="mentor_ID" class="form-control">
+                          <option style="font-weight: bold">Tanlash ...</option>
+                          <% for (let item of mentor) {%>
+                            <option value="<%= item._id %>">
+                              <%= item.name %>
+                            </option>
+                            <% } %>
+                        </select>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Saqlash</button>

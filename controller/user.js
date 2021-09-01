@@ -2,26 +2,30 @@ const USER = require('../module/user')
 const path = require('path')
 const sharp = require('sharp')
 const md5 = require('md5')
+const fs = require('fs')
 
 exports.createOne = async(req, res, next) => {
 
-    //         //origininal rasmni ochirib yuboradi
-    //         fs.unlink(req.file.path, async(error) => {
-    //             []
-    //         })
-    //     })
-    // let compressedFile = path.join(__dirname, '../public/convert', md5(new Date().getTime()) + '.jpg')
 
-    // sharp(req.file.path)
-    //     .resize(400, 400)
-    //     .jpeg({
-    //         quality: 100
-    //     })
-    //     .toFile(compressedFile, (error) => {
-    //         if (error) {
-    //             res.json(error)
-    //         }
-    //     })
+
+
+    let compressedFile = path.join(__dirname, '../public/convert', md5(new Date().getTime()) + '.jpg') // Yangi rasm kiritish uchun ishlatiladi
+    sharp(req.file.path)
+        .resize(400, 400)
+        .jpeg({
+            quality: 100
+        })
+        .toFile(compressedFile, (error) => {
+            if (error) {
+                res.json(error)
+            }
+            fs.unlink(req.file.path, async(error) => {
+                [] //origininal rasmni bazadan uchirib yuboradi
+            })
+        })
+
+
+
 
     const result = new USER({
         name: req.body.name,
@@ -30,8 +34,8 @@ exports.createOne = async(req, res, next) => {
         phone: req.body.phone,
         // balance: req.body.balance,
         // block: req.body.block,
-        image: req.file.filename,
-        role: req.body.role,
+        image: path.basename(compressedFile),
+        // role: req.body.role,
     });
     result.save().then(() => {
         // res.json(result)
@@ -58,27 +62,46 @@ exports.getOne = async(req, res, next) => {
     });
 };
 exports.update = async(req, res, next) => {
-    // let compressedFile = path.join(__dirname, '../public/convert', md5(new Date().getTime()) + '.jpg')
 
-    // await sharp(req.file.path)
-    //     .resize(400, 400)
-    //     .jpeg({
-    //         quality: 100
-    //     })
-    //     .toFile(compressedFile, (error) => {
-    //         if (error) {
-    //             res.send(error)
-    //         }
-    //     })
+    await USER.findById({ _id: req.params.id })
+        .exec((error, data) => {
+            if (error) {
+                res.status(404).json({ success: false, error: error })
+            } else {
+                if (data.image) {
+                    res.status(404).json({ success: false, error: error })
+                }
+                let filePath = path.join(__dirname, '../public/convert/' + data.image)
+
+                fs.unlink(filePath, () => {
+                    []
+                })
+            }
+        })
+
+
+
+    let compressedFile = path.join(__dirname, '../public/convert', md5(new Date().getTime()) + '.jpg')
+    await sharp(req.file.path)
+        .resize(400, 400)
+        .jpeg({
+            quality: 100
+        })
+        .toFile(compressedFile, (error) => {
+            if (error) {
+                res.send(error)
+            }
+            fs.unlink(req.file.path, async(error) => {
+                []
+            })
+        })
 
     const result = await USER.findByIdAndUpdate(req.params.id);
     result.name = req.body.name;
     result.email = req.body.email;
     result.password = req.body.password;
     result.phone = req.body.phone;
-    result.image = `
-                    $ { req.file.filename }
-                    `;
+    result.image = path.basename(compressedFile)
 
     result.save()
         .then(() => {

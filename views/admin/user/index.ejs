@@ -34,43 +34,41 @@
                         </tr>
                     </thead>
 
-                    <% console.log(result) %>
+                    <tbody>
+                        <% for(let item of result) {%>
+                            <tr class="odd gradeX">
+                                <td>
+                                    <%= item.name  %>
+                                </td>
+                                <td>
+                                    <%= item.email  %>
+                                </td>
+                                <td>
+                                    <%= item.phone  %>
+                                </td>
+                                <td>
+                                    <%= item.balance  %>
+                                </td>
+                                <td class="patient-img">
+                                    <img style="width: 50px;" src="/convert/<%=item.image %>" alt="">
+                                </td>
+                                <td>
+                                    <%= moment(item.createdAt).format("DD-MM-YYYY")  %>
+                                </td>
+                                <td style=" display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
 
-                        <tbody>
-                            <% for(let item of result) {%>
-                                <tr>
-                                    <td>
-                                        <%= item.name  %>
-                                    </td>
-                                    <td>
-                                        <%= item.email  %>
-                                    </td>
-                                    <td>
-                                        <%= item.phone  %>
-                                    </td>
-                                    <td>
-                                        <%= item.balance  %>
-                                    </td>
-                                    <td>
-                                        <img style="width: 50px;" src="/orginal/<%=item.image %>" alt="">
-                                    </td>
-                                    <td>
-                                        <%= moment(item.createdAt).format("DD-MM-YYYY")  %>
-                                    </td>
-                                    <td style=" display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
-
-                                        <a class="btn btn-warning" href="<%=`/user/${item._id}`%>">
-                                            <i class="fas fa-cog"></i>
-                                        </a>
-                                        <form method="POST" class="hidden-r" action="<%=`/user/${item._id}?_method=DELETE`%>">
-                                            <button type="submit" class="btn btn-danger">
+                                    <a class="btn btn-warning" href="<%=`/user/${item._id}`%>">
+                                        <i class="fas fa-cog"></i>
+                                    </a>
+                                    <form method="POST" class="hidden-r" action="<%=`/user/${item._id}?_method=DELETE`%>">
+                                        <button type="submit" class="btn btn-danger">
                                         <i class="fa fa-trash"></i>
                                       </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <% } %>
-                        </tbody>
+                                    </form>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </tbody>
 
                 </table>
 
@@ -90,7 +88,7 @@
           </button>
             </div>
             <div class="modal-body">
-                <form action="/user/create" method="POST">
+                <form action="/user/create" method="POST" enctype="multipart/form-data">
                     <div class="mb-4">
                         <label>Name</label>
                         <input type="text" name="name" class="form-control" placeholder="Foydalanuvchi nomini kiriting" />
