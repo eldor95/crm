@@ -17,7 +17,7 @@ const Mentors_audio = mongoose.Schema({
         required: true
     },
     audio_time: {
-        type: Number,
+        type: String,
         required: true
     },
     mentor_ID: {

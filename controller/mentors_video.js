@@ -6,6 +6,7 @@ const MENTORS_AUDIO = require('../module/mentors_audio')
 const MENTORS_VIDEO = require('../module/mentors_video')
 
 exports.createOne = async(req, res, next) => {
+    const user_id = req.session.user._id
     const result = new MENTORS_VIDEO({
         mentors_form_ID: req.body.mentors_form_ID,
         mentor_ID: req.body.mentor_ID,
@@ -14,24 +15,24 @@ exports.createOne = async(req, res, next) => {
         video_name: req.body.video_name,
         video_file: req.file.filename,
         video_time: req.body.video_time,
+        video_description: req.body.video_description,
     });
     result.save().then(() => {
-        // res.json(result)
-        res.redirect('/mentors_video/getAll')
+        res.json(result)
+            // res.redirect('/mentors_video/getAll')
     }).catch((error) => {
         res.json(error)
     })
 };
 exports.getAll = async(req, res, next) => {
     const result = await MENTORS_VIDEO.find().sort({
-            date: -1
+            createdAt: -1
         })
-        .populate(['mentors_group_ID', 'mentor_ID', 'mentors_form_ID']);
-    res.render("./admin/mentors_video/index", {
-            layout: "./admin",
-            result
-        })
-        // res.json(result)
+        .populate(['mentors_form_ID'])
+        .populate(['mentor_ID'])
+        .populate(['mentors_group_ID'])
+        .populate(['mentors_theme_ID'])
+    res.json(result)
 
 };
 exports.getOne = async(req, res, next) => {

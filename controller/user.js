@@ -5,41 +5,32 @@ const md5 = require('md5')
 const fs = require('fs')
 
 exports.createOne = async(req, res, next) => {
-
-
-
-
-    let compressedFile = path.join(__dirname, '../public/convert', md5(new Date().getTime()) + '.jpg') // Yangi rasm kiritish uchun ishlatiladi
-    sharp(req.file.path)
-        .resize(400, 400)
-        .jpeg({
-            quality: 100
-        })
-        .toFile(compressedFile, (error) => {
-            if (error) {
-                res.json(error)
-            }
-            fs.unlink(req.file.path, async(error) => {
-                [] //origininal rasmni bazadan uchirib yuboradi
-            })
-        })
-
-
-
+    // let compressedFile = path.join(__dirname, '../public/convert', md5(new Date().getTime()) + '.jpg') // Yangi rasm kiritish uchun ishlatiladi
+    // sharp(req.file.path)
+    //     .resize(400, 400)
+    //     .jpeg({
+    //         quality: 100
+    //     })
+    //     .toFile(compressedFile, (error) => {
+    //         if (error) {
+    //             res.json(error)
+    //         }
+    //         fs.unlink(req.file.path, async(error) => {
+    //             [] //origininal rasmni bazadan uchirib yuboradi
+    //         })
+    //     })
 
     const result = new USER({
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
         phone: req.body.phone,
-        // balance: req.body.balance,
-        // block: req.body.block,
-        image: path.basename(compressedFile),
-        // role: req.body.role,
+        // image: path.basename(compressedFile),
+        role: req.body.role,
     });
     result.save().then(() => {
-        // res.json(result)
-        res.redirect('/user/getAll')
+        res.json(result)
+            // res.redirect('/user/getAll')
 
     }).catch((error) => {
         res.json(error)
@@ -145,4 +136,33 @@ exports.filter_student = async(req, res, next) => {
             res.json(data)
         }
     })
+}
+
+exports.login = async(req, res, next) => {
+
+    const { email, password } = req.body;
+    if (!email || !password) {
+        res.json("Parol yoki email xato")
+    }
+    const users = await USER.findOne({ email: email }).select("password");
+    if (!users) {
+        res.json("Parol yoki email xato")
+    }
+    const isMatch = await users.matchPassword(password);
+    if (!isMatch) {
+        res.json("Parol yoki email xato")
+    }
+
+    const body = await USER.findOne({ email: req.body.email });
+    req.session.user = body;
+    req.session.save();
+    res.json({
+        message: "Men profilga kirdim",
+        data: body
+    })
+};
+exports.logout = async(req, res, next) => {
+    req.session.destroy();
+    res.clearCookie("connect.sid");
+    res.json("Men profilimdan chiqib kettim")
 }

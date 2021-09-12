@@ -10,7 +10,6 @@ const cors = require('cors')
 const MongoURI = 'mongodb://localhost:27017/crm';
 const MongoDBSession = require("connect-mongodb-session")(session);
 
-
 app.use(express.json())
 app.use(express.urlencoded({
     extended: false

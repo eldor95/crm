@@ -16,6 +16,10 @@ const Mentors_video = mongoose.Schema({
         type: String,
         required: true
     },
+    video_description: {
+        type: String,
+        required: true
+    },
     video_time: {
         type: Number,
         required: true
